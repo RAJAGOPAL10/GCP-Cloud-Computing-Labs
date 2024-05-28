@@ -1,0 +1,12 @@
+FROM python:3.7
+
+ADD rest-server.py /
+RUN pip3 install --upgrade minio redis jsonpickle requests flask
+
+CMD mkdir /app
+WORKDIR /app
+
+COPY . /app
+EXPOSE 5000
+CMD cd /app && \
+python3 rest-server.py
